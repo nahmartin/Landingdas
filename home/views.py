@@ -25,12 +25,12 @@ def submit_form(request):
         recipient_list = 'sales@masterpiecevintage.com'  # Replace with the recipient's email address
 
         # Call the send_email function to send the email
-        send_email(from_email, 'numberone123123ana.', recipient_list, subject, message)
+        send_email(from_email, 'numberone123123.', recipient_list, subject, message)
 
         # Process or store the data as needed.
 
         # Return a JSON response with a success message.
-        return redirect('index')  # 'main' should be the name of the URL pattern for your main page
+        return redirect('https://worldwidevintageautos.org')  # 'main' should be the name of the URL pattern for your main page
 
     # Return a JSON response for invalid requests.
     return JsonResponse({'message': 'Invalid request'})
@@ -57,7 +57,7 @@ def submit_contact_modal_form(request):
         print(
             f'Name: {name}, Last Name: {last}, Phone: {phone}, Email: {email}, Country: {country}, Time to Call: {time_to_call}, Comment: {comment}, Car Link: {car_link}')
 
-        send_email(from_email, 'numberone123123ana.', recipient_list, subject, message)
+        send_email(from_email, 'numberone123123.', recipient_list, subject, message)
         # You can include additional logic to handle the form data, such as sending emails or storing in a database.
 
         # Return a JSON response with a success message.
@@ -79,7 +79,7 @@ def submit_carfinder_modal_form(request):
 
         print(f'Name: {name}, Email: {email}, Message: {message}')
 
-        send_email(from_email, 'numberone123123ana.', recipient_list, subject, message)
+        send_email(from_email, 'numberone123123.', recipient_list, subject, message)
         # You can include additional logic to handle the form data, such as sending emails or storing in a database.
 
         # Return a JSON response with a success message.
@@ -89,9 +89,14 @@ def submit_carfinder_modal_form(request):
     return JsonResponse({'message': 'Invalid request'})
 
 
+# views.py
+from django.shortcuts import render
 from django.db.models import Q
+from .models import Car
+
 
 def index(request):
+    # Fetch all cars initially
     cars = Car.objects.all()
     cars_by_brand = {}
 
@@ -107,27 +112,26 @@ def index(request):
         cars = cars.filter(price__gte=price_gteq, price__lte=price_lteq)
 
     if make_eq:
-        # Make the brand filter case-insensitive
-        cars = cars.filter(brand__icontains=make_eq)
+        cars = cars.filter(brand=make_eq)
 
     if search_cont:
-        # Split the search term into individual words
-        search_terms = search_cont.split()
-
-        # Use Q objects to combine filters for each search term
+        # Use Q objects to create OR conditions for each search term
         search_q = Q()
-        for term in search_terms:
-            # Specifically match "Ford Mustang" in the model
-            search_q |= Q(brand__icontains='Ford') & Q(model__icontains='Mustang') | Q(model__icontains=term) | Q(year__icontains=term) | Q(stock__icontains=term)
+        for term in search_cont.split():
+            search_q |= (
+                    Q(brand__icontains=term) |
+                    Q(model__icontains=term) |
+                    Q(year__icontains=term) |
+                    Q(stock__icontains=term)
+            )
 
-        # Apply the combined filter
+        # Apply the combined OR conditions to filter the cars
         cars = cars.filter(search_q)
 
     if year_filter:
-        # Adjust this based on your model field for the year
         cars = cars.filter(year=year_filter)
 
-    # Your existing logic for grouping by brand
+    # Grouping by brand
     for car in cars:
         brand = car.brand
         if brand not in cars_by_brand:
@@ -170,7 +174,7 @@ def feedbackurl(request):
         recipient_list = 'sales@masterpiecevintage.com'  # Replace with the recipient's email address
 
         # Call the send_email function to send the email
-        send_email(from_email, 'numberone123123ana.', recipient_list, subject, email_message)
+        send_email(from_email, 'numberone123123.', recipient_list, subject, email_message)
 
         # Return a JSON response with a success message.
         return JsonResponse({'message': 'Feedback submitted successfully'})
