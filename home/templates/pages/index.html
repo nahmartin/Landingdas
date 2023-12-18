@@ -338,7 +338,40 @@ color: #fff;
 }
 
 </style>
+  <style>
+    /* Add your existing styles here */
 
+    .giveaway-details {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+
+    .giveaway-details h2 {
+      font-size: 24px;
+      color: #e73113;
+      margin-bottom: 15px;
+    }
+
+    .giveaway-details p {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .giveaway-details ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .giveaway-details li {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 5px;
+    }
+  </style>
   <main>
     <article>
 
@@ -347,19 +380,43 @@ color: #fff;
       -->
 
       <section class="hero has-bg-image" aria-label="home" style="background-image: url('{% static "/assets/images/hero-bg.jpg" %}'); padding-bottom: 0px">
-           <a href="https://worldwidevintageautos.org" class="btn btn-primary" style="margin: 0 auto 25px; text-align: center">
+           <a href="https://worldwidevintageautos.org" class="btn btn-primary" style="margin: 0 auto 25px; text-align: center; border-radius: 0px">
         <span class="span">View the full Collection</span>
+
 
         <span class="material-symbols-rounded">arrow_forward</span>
       </a>
         <div class="container">
-
+ <section class="giveaway-details">
+        <h2>December Vintage Giveaway! 🎁</h2>
+        <p><strong>Duration:</strong> December 1, 2023 - December 31, 2023</p>
+        <p><strong>How to Enter:</strong></p>
+        <ul>
+          <li>Make a purchase from our store between December 1 and December 31, 2023.</li>
+          <li>Each purchase automatically qualifies as one entry into the giveaway.</li>
+        </ul>
+        <p><strong>Prize:</strong></p>
+        <ul>
+          <li>Grand Prize: 1970 Red Chevrolet Chevelle in perfect conditions🔥</li>
+        </ul>
+        <p><strong>Winner Selection:</strong></p>
+        <ul>
+          <li>Winners will be randomly selected from eligible entries.</li>
+          <li>The drawing will take place on January 1, 2024.</li>
+          <li>Winners will be notified via email and announced on our social media channels.</li>
+        </ul>
+        <p><strong>Conditions:</strong></p>
+        <ul>
+          <li>Open to customers who make a purchase during the specified duration.</li>
+          <li>Multiple purchases result in multiple entries, increasing your chances of winning.</li>
+          <li>No minimum purchase amount required to enter.</li>
+          <li>Giveaway is open internationally.</li>
+        </ul>
+        <p><strong>Note:</strong> This giveaway is not sponsored, endorsed, or administered by, or associated with any company beside WorldWideVintageAutos. By participating, you agree to our terms and conditions.</p>
+        <p>Good luck and Happy Holidays! 🎄</p>
+      </section>
           <div class="hero-content">
 
-            <p class="section-subtitle :dark">WorldWideVintageAutos starts a Giveaway: <br>
-              1.Fill out the form with your details below. <br>
-                  2.Stay tuned as we count down to the giveaway deadline.
-            </p>
 
             <h1 class="h1 section-title">1970 Chevrolet Chevelle</h1>
               <ul id="count-down">
@@ -368,6 +425,29 @@ color: #fff;
         <li class="minutes"></li>
         <li class="seconds"></li>
     </ul>
+
+<div id="simple-form" class="simple-form-container" style="margin-top: 20px;">
+    <div class="modal-content">
+        <!-- Simplified Form with Name and Phone Number -->
+        <form id="simple-vip-form" method="post" action="{% url 'submit_form' %}" class="simple-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="simple-name" class="label1" style="font-size: 25px; padding-bottom: 25px">Name:</label>
+                    <input type="text" id="simple-name" name="name" class="form-control input1" required>
+                </div>
+                <div class="form-group">
+                    <label for="simple-phone" class="label1" style="font-size: 25px; padding-bottom: 25px">Phone Number:</label>
+                    <input type="text" id="simple-phone" name="phone" class="form-control input1" required>
+                </div>
+            </div>
+            <div class="form-group" style="padding-top: 13px;">
+                <!-- Add more form fields as needed -->
+                <button type="submit" id="submit_button" onclick="closeVIPModal()" style="font-family: 'Century Gothic'; border-radius: 25px">Submit now!</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 
 <script>
 
@@ -559,28 +639,6 @@ color: #fff;
         }
     }
 </style>
-
-<div id="simple-form" class="simple-form-container" style="margin-top: 20px;">
-    <div class="modal-content">
-        <!-- Simplified Form with Name and Phone Number -->
-        <form id="simple-vip-form" method="post" action="{% url 'submit_form' %}" class="simple-form">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="simple-name" class="label1" style="font-size: 25px; padding-bottom: 25px">Name:</label>
-                    <input type="text" id="simple-name" name="name" class="form-control input1" required>
-                </div>
-                <div class="form-group">
-                    <label for="simple-phone" class="label1" style="font-size: 25px; padding-bottom: 25px">Phone Number:</label>
-                    <input type="text" id="simple-phone" name="phone" class="form-control input1" required>
-                </div>
-            </div>
-            <div class="form-group" style="padding-top: 13px;">
-                <!-- Add more form fields as needed -->
-                <button type="submit" id="submit_button" onclick="closeVIPModal()" style="font-family: 'Century Gothic'; border-radius: 25px">Submit now!</button>
-            </div>
-        </form>
-    </div>
-</div>
 
 
       </section>
